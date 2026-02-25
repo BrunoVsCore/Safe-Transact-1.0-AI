@@ -26,26 +26,6 @@ O modelo final usado na aplicacao e um `Pipeline` com:
   - download do resultado em CSV.
 - Leitura de CSV com separador automatico (`,` ou `;`).
 
-## Estrutura de Pastas
-
-```text
-.
-├─ Treinamento/
-│  ├─ Treina_ai.py
-│  ├─ creditcard.csv
-│  ├─ modelo_fraude_final.pkl
-│  └─ feature_importance_log.csv
-├─ TestaAI__ja_treinada/
-│  ├─ Analise_de_Fraude.py
-│  ├─ novos_dados_teste.csv
-│  └─ resultado_analise_fraude.csv
-└─ streamlit_aprendendo/
-   ├─ app.py
-   ├─ fraude.json
-   ├─ logo_circular.png
-   └─ modelo_ia/
-```
-
 ## Dados Esperados para Inferencia
 
 O modelo final espera exatamente estas colunas:
@@ -78,40 +58,15 @@ Arquivo: `Treinamento/Treina_ai.py`
 ## Requisitos
 
 Python 3.10+ recomendado.
-
 Instalacao rapida:
-
 ```bash
 pip install pandas numpy scikit-learn matplotlib joblib streamlit streamlit-option-menu
 ```
 
-## Como Executar
-
-### 1) Treinar novamente o modelo
-
+## Como Executar interface web (Streamlit)
 ```bash
-cd Treinamento
-python Treina_ai.py
-```
-
-### 2) Rodar analise em lote (script)
-
-```bash
-cd TestaAI__ja_treinada
-python Analise_de_Fraude.py
-```
-
-Saida esperada:
-
-- `resultado_analise_fraude.csv`
-
-### 3) Rodar interface web (Streamlit)
-
-```bash
-cd streamlit_aprendendo
 streamlit run app.py
 ```
-
 No app, faca upload de um `.csv` com as colunas esperadas para obter as previsoes e os graficos.
 
 ## Observacoes Tecnicas
@@ -119,13 +74,7 @@ No app, faca upload de um `.csv` com as colunas esperadas para obter as previsoe
 - O modelo serializado pode gerar aviso se a versao do `scikit-learn` de treino e diferente da versao de execucao.
 - Para resultados mais consistentes em producao, mantenha a mesma versao usada no treinamento.
 
-## Roadmap
 
-- Padronizar encoding/texto do frontend.
-- Adicionar validacao forte de schema de entrada no app.
-- Criar `requirements.txt` com versoes fixas.
-- Adicionar testes automatizados para inferencia.
 
 ## Autor
-
 Projeto desenvolvido por Bruno, com foco em seguranca digital e IA aplicada.
