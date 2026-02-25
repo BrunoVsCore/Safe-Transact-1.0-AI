@@ -1,6 +1,6 @@
 # Safe Transact 1.0 - Deteccao de Fraudes com Machine Learning
 
-Projeto de portfolio para deteccao de fraudes financeiras com Python, Scikit-learn e Streamlit.
+Projeto para deteccao de fraudes financeiras com Python, Scikit-learn e Streamlit. Voltado para instituições financeiras focado em seguranca digital e IA aplicada.
 
 ## Visao Geral
 
@@ -70,11 +70,10 @@ streamlit run app.py
 No app, faca upload de um `.csv` com as colunas esperadas para obter as previsoes e os graficos.
 
 ## Observacoes Tecnicas
-
 - O modelo serializado pode gerar aviso se a versao do `scikit-learn` de treino e diferente da versao de execucao.
 - Para resultados mais consistentes em producao, mantenha a mesma versao usada no treinamento.
 
 
 
 ## Autor
-Projeto desenvolvido por Bruno, com foco em seguranca digital e IA aplicada.
+Projeto desenvolvido por Bruno, 
