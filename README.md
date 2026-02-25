@@ -1,4 +1,3 @@
-# Safe-Transact-1.0-AI
 # Safe Transact 1.0 - Deteccao de Fraudes com Machine Learning
 
 Projeto de portfolio para deteccao de fraudes financeiras com Python, Scikit-learn e Streamlit.
