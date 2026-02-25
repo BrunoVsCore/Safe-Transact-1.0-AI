@@ -1,1 +1,132 @@
 # Safe-Transact-1.0-AI
+# Safe Transact 1.0 - Deteccao de Fraudes com Machine Learning
+
+Projeto de portfolio para deteccao de fraudes financeiras com Python, Scikit-learn e Streamlit.
+
+## Visao Geral
+
+O projeto tem tres partes principais:
+
+- `Treinamento`: treino e salvamento do modelo de fraude.
+- `TestaAI__ja_treinada`: inferencia em lote com CSV de entrada.
+- `streamlit_aprendendo`: interface web para upload de CSV e visualizacao dos resultados.
+
+O modelo final usado na aplicacao e um `Pipeline` com:
+
+- `StandardScaler`
+- `RandomForestClassifier`
+
+## Funcionalidades
+
+- Treinamento supervisionado para classificacao de fraude (`Fraude = 0/1`).
+- Predicao em lote via script Python.
+- Dashboard em Streamlit com:
+  - tabela de previsoes,
+  - KPIs de suspeitas,
+  - multiplos graficos de analise,
+  - download do resultado em CSV.
+- Leitura de CSV com separador automatico (`,` ou `;`).
+
+## Estrutura de Pastas
+
+```text
+.
+├─ Treinamento/
+│  ├─ Treina_ai.py
+│  ├─ creditcard.csv
+│  ├─ modelo_fraude_final.pkl
+│  └─ feature_importance_log.csv
+├─ TestaAI__ja_treinada/
+│  ├─ Analise_de_Fraude.py
+│  ├─ novos_dados_teste.csv
+│  └─ resultado_analise_fraude.csv
+└─ streamlit_aprendendo/
+   ├─ app.py
+   ├─ fraude.json
+   ├─ logo_circular.png
+   └─ modelo_ia/
+```
+
+## Dados Esperados para Inferencia
+
+O modelo final espera exatamente estas colunas:
+
+- `Valor`
+- `Saldo_Anterior`
+- `Mudanca_Dispositivo`
+- `Horario`
+- `Novo_Destino`
+
+Exemplo de cabecalho CSV:
+
+```csv
+Valor,Saldo_Anterior,Mudanca_Dispositivo,Horario,Novo_Destino
+```
+
+## Como o Modelo Foi Treinado
+
+Arquivo: `Treinamento/Treina_ai.py`
+
+1. Leitura de `creditcard.csv`.
+2. Definicao de `Fraude` como target.
+3. Criacao de `sample_weight` com enfase em alto risco.
+4. Split treino/teste (`test_size=0.2`, `stratify=y`, `random_state=42`).
+5. Treino de `Pipeline(StandardScaler + RandomForestClassifier)`.
+6. Avaliacao com `classification_report`.
+7. Salvamento em `modelo_fraude_final.pkl`.
+8. Export de importancia das features em `feature_importance_log.csv`.
+
+## Requisitos
+
+Python 3.10+ recomendado.
+
+Instalacao rapida:
+
+```bash
+pip install pandas numpy scikit-learn matplotlib joblib streamlit streamlit-option-menu
+```
+
+## Como Executar
+
+### 1) Treinar novamente o modelo
+
+```bash
+cd Treinamento
+python Treina_ai.py
+```
+
+### 2) Rodar analise em lote (script)
+
+```bash
+cd TestaAI__ja_treinada
+python Analise_de_Fraude.py
+```
+
+Saida esperada:
+
+- `resultado_analise_fraude.csv`
+
+### 3) Rodar interface web (Streamlit)
+
+```bash
+cd streamlit_aprendendo
+streamlit run app.py
+```
+
+No app, faca upload de um `.csv` com as colunas esperadas para obter as previsoes e os graficos.
+
+## Observacoes Tecnicas
+
+- O modelo serializado pode gerar aviso se a versao do `scikit-learn` de treino e diferente da versao de execucao.
+- Para resultados mais consistentes em producao, mantenha a mesma versao usada no treinamento.
+
+## Roadmap
+
+- Padronizar encoding/texto do frontend.
+- Adicionar validacao forte de schema de entrada no app.
+- Criar `requirements.txt` com versoes fixas.
+- Adicionar testes automatizados para inferencia.
+
+## Autor
+
+Projeto desenvolvido por Bruno, com foco em seguranca digital e IA aplicada.
